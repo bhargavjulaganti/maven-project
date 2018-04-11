@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  one:
+  build:
     docker:
       - image: circleci/open jdk:8-jdk
 
@@ -8,9 +8,10 @@ jobs:
       - checkout
       - run: composer install -n --prefer-dist
       - run: echo "A first hello"
+      - run: mvn dependency::go-offline #make sure all dependencies are in local before going offline
       - run: mvn clean package
 workflows:
   version: 2
   one_and_two:
     jobs:
-      - one
+      - build
