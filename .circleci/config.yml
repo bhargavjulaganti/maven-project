@@ -6,7 +6,6 @@ jobs:
 
     steps:
       - checkout
-      - run: composer install -n --prefer-dist
       - run: echo "A first hello"
       - run: mvn dependency::go-offline #make sure all dependencies are in local before going offline
       - run: mvn clean package
